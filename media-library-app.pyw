@@ -17731,14 +17731,22 @@ QMenu::separator {
             def _do():
                 dlg.adjustSize()
                 # Перецентрируем окно после изменения размера
-                _screen = QApplication.primaryScreen()
-                if _screen is not None:
-                    _ag = _screen.availableGeometry()
-                    _dg = dlg.frameGeometry()
+                _dg = dlg.frameGeometry()
+                _parent = dlg.parent()
+                if _parent is not None:
+                    _pg = _parent.frameGeometry()
                     dlg.move(
-                        _ag.left() + (_ag.width()  - _dg.width())  // 2,
-                        _ag.top()  + (_ag.height() - _dg.height()) // 2,
+                        _pg.left() + (_pg.width()  - _dg.width())  // 2,
+                        _pg.top()  + (_pg.height() - _dg.height()) // 2,
                     )
+                else:
+                    _screen = QApplication.primaryScreen()
+                    if _screen is not None:
+                        _ag = _screen.availableGeometry()
+                        dlg.move(
+                            _ag.left() + (_ag.width()  - _dg.width())  // 2,
+                            _ag.top()  + (_ag.height() - _dg.height()) // 2,
+                        )
                 dlg.setUpdatesEnabled(True)
             QTimer.singleShot(0, _do)
 
