@@ -14706,22 +14706,33 @@ class ItemDialog(_NoManualResizeMixin, QDialog):
                 self2.setTerminationEnabled(False)  # не убивать поток принудительно
                 try:
                     offset = (self2._page - 1) * 20
-                    url = (f'https://www.bing.com/images/search'
-                           f'?q={urllib.parse.quote(self2._query)}&form=HDRSC2&first={offset + 1}')
+                    # Используем async-эндпоинт Bing — он стабильнее и возвращает чистый HTML
+                    url = (f'https://www.bing.com/images/async'
+                           f'?q={urllib.parse.quote(self2._query)}'
+                           f'&first={offset}&count=20&mmasync=1')
                     req = urllib.request.Request(url, headers={
-                        'User-Agent':     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120.0',
+                        'User-Agent':     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
                         'Accept-Language':'en-US,en;q=0.9',
-                        'Accept':         'text/html,application/xhtml+xml',
-                        'Referer':        'https://www.bing.com/'})
-                    with urllib.request.urlopen(req, timeout=12) as resp:
-                        html = resp.read().decode('utf-8', errors='ignore')
+                        'Accept':         'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                        'Referer':        'https://www.bing.com/images/search?q=' + urllib.parse.quote(self2._query),
+                        'X-Requested-With': 'XMLHttpRequest'})
+                    try:
+                        with urllib.request.urlopen(req, timeout=12) as resp:
+                            html = resp.read().decode('utf-8', errors='ignore')
+                    except Exception:
+                        ctx = ssl.create_default_context()
+                        ctx.check_hostname = False
+                        ctx.verify_mode    = ssl.CERT_NONE
+                        with urllib.request.urlopen(req, timeout=12, context=ctx) as resp:
+                            html = resp.read().decode('utf-8', errors='ignore')
                     if self2._stopped:
                         return
-                    matches = re.findall(r'm="({[^"]+})"', html)
+                    # Парсим атрибут m= из тегов <a> — это JSON с murl/turl
+                    # &quot; — экранированные кавычки в HTML-атрибутах
                     items = []
-                    for m in matches:
+                    for raw_m in re.findall(r'<a[^>]+\sm="([^"]+)"', html):
                         try:
-                            obj = json.loads(m.replace('&quot;', '"'))
+                            obj = json.loads(raw_m.replace('&quot;', '"'))
                             murl = obj.get('murl', '')
                             turl = obj.get('turl', '')
                             if murl and turl:
