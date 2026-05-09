@@ -32,12 +32,9 @@ Create your own data fields for each category — any combination of:
 
 ### 🎖️ Tier Lists
 - Built-in tier list system with fully customizable tier sets
-- Multiple tier list sets per category
-- Drag-and-drop tier assignment
 
 ### 👥 Multi-User Support
-- Track watch history per user — who watched what, with whom, and how many times
-- Per-user watch dates and view counts
+- Tracking viewing history by user—who watched it with whom, and how many times
 
 ### 📊 Statistics
 - Monthly and yearly activity charts
@@ -52,22 +49,22 @@ Create your own data fields for each category — any combination of:
 - Unused image cleanup tool
 
 ### 📤 Export & Import
-- **HTML export** — embed images as base64 (single file) or export to folder
+- **HTML export** — with the option to embed images as base64 (single file) or export them to a folder
 - **CSV/ZIP export** — full data export with covers, icons, and custom fields
 - **ZIP import** — restore from exported archives with a diff preview (see exactly what will be added)
 - Text export with fully customizable templates using field variables
 - Multi-category batch export
 
 ### 🗒️ Notes
-- Per-item rich notes editor with unsaved-changes protection
+- Per-item rich notes editor
 
 ### ⚙️ Settings & Customization
 - **Language support** — English, Русский, Українська (and custom `.json` language files)
 - **HiDPI scaling** for QHD and 4K monitors
-- **Automatic weekly backup** on launch (background, non-blocking)
+- **Automatic weekly backup** on launch
 - **Backup on delete** — configurable auto-backup when deleting items, categories, fields, tiers, or users
 - **Database maintenance** — VACUUM optimization with auto-backup
-- Custom date format (year / year+month / full date)
+- Custom date format
 - Desktop shortcut creator
 
 ---
