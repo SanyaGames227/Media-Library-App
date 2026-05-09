@@ -1,3 +1,5 @@
+🌐 [English](README.md) · [Русский](README_RU.md) · [Українська](README_UA.md)
+
 # 🎬 Media Library App
 
 A powerful desktop media tracker and catalog manager built with Python and PyQt5. Organize your movies, shows, games, books — or anything else — in a clean, fast, offline-first interface.
