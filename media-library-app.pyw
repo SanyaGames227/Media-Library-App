@@ -19326,14 +19326,6 @@ QMenu::separator {
             sd_layout.setContentsMargins(20, 20, 20, 16)
             sd_layout.setSpacing(10)
 
-            title_lbl = QLabel('🩷  ' + self.translations.get('support_developer', 'Support the Developer'))
-            _tf = title_lbl.font()
-            _tf.setPointSize(13)
-            _tf.setBold(True)
-            title_lbl.setFont(_tf)
-            title_lbl.setAlignment(Qt.AlignCenter)
-            sd_layout.addWidget(title_lbl)
-
             desc_lbl = QLabel(self.translations.get(
                 'support_desc',
                 'If you enjoy this app, consider supporting its development.\n'
