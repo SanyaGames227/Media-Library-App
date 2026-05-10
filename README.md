@@ -100,14 +100,17 @@ Create your own data fields for each category — any combination of:
 ## 🚀 Getting Started
 
 ### Requirements
-```
-pip install PyQt5 Pillow
-```
 
-### Run
-```
+**Option 1 — Python**
+
+```bash
+pip install PyQt5 Pillow
 python media-library-app.pyw
 ```
+
+**Option 2 — Portable**
+
+Extract the archive of portable version and run the `.exe` file.
 
 ---
 
