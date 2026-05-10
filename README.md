@@ -120,6 +120,7 @@ All data is stored locally — no accounts, no cloud, no telemetry. The database
 ## About
 
 <img width="462" height="614" src="https://github.com/user-attachments/assets/e56abb59-5192-492c-8364-e3d960abe4af" />
+
 ---
 
 ## 🩷 Support
