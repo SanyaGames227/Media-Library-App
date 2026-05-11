@@ -41,7 +41,7 @@ Create your own data fields for each category — any combination of:
 <img width="1402" height="832" src="https://github.com/user-attachments/assets/1fcb6c59-6650-4c23-b87c-bdd3037f71b8" />
 
 ### 👥 Multi-User Support
-- Tracking viewing history by user—who watched it with whom, and how many times
+- Track viewing history by user — who you watched with
 
 ### 📊 Statistics
 - Monthly and yearly activity charts
